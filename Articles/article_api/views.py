@@ -1,4 +1,7 @@
+from rest_framework import status
+from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
@@ -6,47 +9,43 @@ from .models import Article
 from.serializers import ArticleSerializer
 
 
-@csrf_exempt
+@api_view(['GET', 'POST'])
 def article_list(request):
     if request.method == 'GET':
         articles = Article.objects.all()
         serializer = ArticleSerializer(articles, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
 
     elif request.method == 'POST':  # create
-        data = JSONParser().parse(request)
-        serializer = ArticleSerializer(data=data)
+        serializer = ArticleSerializer(data=request.data)
 
         # we have to check new posted data validation
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return JsonResponse(serializer.errors, status=400)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
 def article_detail(request, pk):
     try:
         article = Article.objects.get(pk=pk)
     except Article.DoesNotExist:
-        return HttpResponse(status=404)  # 404 Not Found
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':  # get
         serializer = ArticleSerializer(article)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'PUT':  # update
-        data = JSONParser().parse(request)
-        serializer = ArticleSerializer(article, data=data)
+        serializer = ArticleSerializer(article, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            # 201 CreatedThe request has been fulfilled, resulting in the creation of a new resource
-            return JsonResponse(serializer.data, status=201)
+            return Response(serializer.data)
 
-        return JsonResponse(serializer.errors, status=400)  # 400 Bad Request
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
         article.delete()
-        # No Content he server successfully processed the request, and is not returning any content.
-        return HttpResponse(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)
