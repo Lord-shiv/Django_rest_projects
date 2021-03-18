@@ -2,13 +2,43 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.parsers import JSONParser
+from rest_framework import generics, mixins
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from rest_framework.parsers import JSONParser
 from .models import Article
-from.serializers import ArticleSerializer
+from .serializers import ArticleSerializer
 
 
+#
+# ------------------Generic Views ---------------------------
+#
+class GenricView(generics.GenericAPIView, mixins.ListModelMixin,
+                 mixins.CreateModelMixin, mixins.RetrieveModelMixin,
+                 mixins.DestroyModelMixin, mixins.UpdateModelMixin):
+
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()
+    lookup_field = 'id'
+
+    def get(self, request, id=None):
+        if id:
+            return self.retrieve(request)
+        return self.list(request)
+
+    def post(self, request):
+        return self.create(request)
+
+    def put(self, request, id=None):
+        return self.update(request, id)
+
+    def delete(self, request, id):
+        return self.destroy(request, id)
+
+
+#
+# ------------------Class Views ---------------------------
+#
 class ArticleView(APIView):
     def get(self, request):
         articles = Article.objects.all()
@@ -50,43 +80,47 @@ class ArticleDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# @api_view(['GET', 'POST'])
-# def article_list(request):
-#     if request.method == 'GET':
-#         articles = Article.objects.all()
-#         serializer = ArticleSerializer(articles, many=True)
-#         return Response(serializer.data)
+#
+# ------------------function Views ---------------------------
+#
 
-#     elif request.method == 'POST':  # create
-#         serializer = ArticleSerializer(data=request.data)
+@api_view(['GET', 'POST'])
+def article_list(request):
+    if request.method == 'GET':
+        articles = Article.objects.all()
+        serializer = ArticleSerializer(articles, many=True)
+        return Response(serializer.data)
 
-#         # we have to check new posted data validation
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+    elif request.method == 'POST':  # create
+        serializer = ArticleSerializer(data=request.data)
 
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # we have to check new posted data validation
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def article_detail(request, pk):
-#     try:
-#         article = Article.objects.get(pk=pk)
-#     except Article.DoesNotExist:
-#         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+@api_view(['GET', 'PUT', 'DELETE'])
+def article_detail(request, pk):
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
-#     if request.method == 'GET':  # get
-#         serializer = ArticleSerializer(article)
-#         return Response(serializer.data)
+    if request.method == 'GET':  # get
+        serializer = ArticleSerializer(article)
+        return Response(serializer.data)
 
-#     elif request.method == 'PUT':  # update
-#         serializer = ArticleSerializer(article, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
+    elif request.method == 'PUT':  # update
+        serializer = ArticleSerializer(article, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
-#         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#     elif request.method == 'DELETE':
-#         article.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
+    elif request.method == 'DELETE':
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
