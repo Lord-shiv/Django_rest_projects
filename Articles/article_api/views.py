@@ -10,7 +10,7 @@ from .models import Article
 from .serializers import ArticleSerializer
 
 # authentication
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 #
@@ -26,7 +26,8 @@ class GenricView(generics.GenericAPIView, mixins.ListModelMixin,
     queryset = Article.objects.all()
     lookup_field = 'id'
     # auth
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self, request, id=None):
