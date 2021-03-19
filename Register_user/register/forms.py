@@ -1,19 +1,20 @@
 from django import forms
+from base.models import User
 
 
-class UserForm(forms.Form):
+class UserFrom(forms.ModelForm):
+    CHOICES = [('male', 'Male'), ('female', 'Female'), ('other', 'Other'), ]
+    gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
+
     class Meta:
         model = User
-        fields = "first_name, last_name, profile_pic, gender, email, phone, status, salary, about, signup_confirmation"
+        fields = '__all__'
+
         labels = {
             'first_name': 'first name',
             'last_name': 'last name',
-            'profile_pic': 'profile image',
-            'salary': 'expected salary',
-            'about': 'tell us about you.',
-            'signup_confirmation': 'Select the box if are sure about the above filled data is true.'
-
-        }
-        widgets = {
-            'gender': forms.RadioSelect()
+            'profile_pic': 'image',
+            'docs': 'resume',
+            'status': 'job type',
+            'signup_confirmation': 'select only if you think above information probided by you is true and you are responsible for it.'
         }
