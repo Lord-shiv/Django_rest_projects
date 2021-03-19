@@ -16,15 +16,23 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 
+
+#
+# ++++++++++ Modelviewset +++++++++++++
+# it has default list delete update post create methods
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()
 #
 # ++++++++++ Genric viewset +++++++++++++
 #
 
 
-class ArticleViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin,
-                     mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin,):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
+# class ArticleViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin,
+#                      mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
+#     serializer_class = ArticleSerializer
+#     queryset = Article.objects.all()
 
 
 #
