@@ -9,10 +9,15 @@ from django.http import HttpResponse, JsonResponse
 from .models import Article
 from .serializers import ArticleSerializer
 
+# authentication
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 #
 # ------------------Generic Views ---------------------------
 #
+
+
 class GenricView(generics.GenericAPIView, mixins.ListModelMixin,
                  mixins.CreateModelMixin, mixins.RetrieveModelMixin,
                  mixins.DestroyModelMixin, mixins.UpdateModelMixin):
@@ -20,6 +25,9 @@ class GenricView(generics.GenericAPIView, mixins.ListModelMixin,
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
     lookup_field = 'id'
+    # auth
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, id=None):
         if id:
