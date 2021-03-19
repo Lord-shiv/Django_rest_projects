@@ -24,4 +24,4 @@ class User(models.Model):
     signup_confirmation = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return self.first_name
