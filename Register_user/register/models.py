@@ -19,7 +19,7 @@ class User(models.Model):
     phone = models.CharField(max_length=50, null=True, unique=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.ForeignKey(JobType, on_delete=models.CASCADE)
-    salary = models.DecimalField(max_digits=6, decimal_places=2)
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
     about = models.TextField(max_length=1000, null=True)
     signup_confirmation = models.BooleanField(default=False)
 

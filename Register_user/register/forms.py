@@ -1,8 +1,8 @@
 from django import forms
-from base.models import User
+from . models import User, JobType
 
 
-class UserFrom(forms.ModelForm):
+class UserForm(forms.ModelForm):
     CHOICES = [('male', 'Male'), ('female', 'Female'), ('other', 'Other'), ]
     gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
 
@@ -11,10 +11,15 @@ class UserFrom(forms.ModelForm):
         fields = '__all__'
 
         labels = {
-            'first_name': 'first name',
-            'last_name': 'last name',
-            'profile_pic': 'image',
-            'docs': 'resume',
-            'status': 'job type',
+            'first_name': 'First name',
+            'last_name': 'Last name',
+            'profile_pic': 'Image',
+            'docs': 'Resume',
+            'status': 'Position',
+            'salary': 'Expected Salary',
             'signup_confirmation': 'select only if you think above information probided by you is true and you are responsible for it.'
         }
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['status'].empty_label = 'Select here'

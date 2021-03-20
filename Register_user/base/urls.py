@@ -3,12 +3,11 @@ from django.conf.urls.static import static
 from django.urls import path
 from base import settings
 
-from register.views import add_user, save_user
+from register.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add/', add_user, name="add"),
-    path('save/', save_user, name="save"),
+    path('home/', home, name="home"),
 ]
 
 
