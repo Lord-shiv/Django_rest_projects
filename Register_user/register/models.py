@@ -12,7 +12,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField('last name', max_length=150, blank=True)
     profile_pic = models.ImageField(
-        upload_to='user_profile_pics/', default='default.jpg', )
+        upload_to='user_profile_pics/', default='default.jpg', blank=True, null=True)
     gender = models.CharField(max_length=50)
     email = models.EmailField(blank=True, unique=True)
     docs = models.FileField(upload_to="user_docs/", null=True)
