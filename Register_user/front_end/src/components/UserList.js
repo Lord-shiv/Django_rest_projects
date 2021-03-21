@@ -1,8 +1,8 @@
 import React from 'react';
 
-function UserList() {
+function UserList(props) {
     return (
-        <h1>We are user list</h1>
+        <h1>{props.name}</h1>
     )
 }
 

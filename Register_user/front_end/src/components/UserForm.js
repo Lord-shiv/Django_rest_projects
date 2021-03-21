@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Hello() {
+function Hello(props) {
     return (
-        <h1>We are User form</h1>
+        <h1>My name is {props.name} and my last name is {props.lastname}</h1>
     )
 }
 

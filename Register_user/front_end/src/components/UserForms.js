@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class UserFormClass extends Component {
     render() {
         return (
-            <h1>We are inside class component</h1>
+            <h1>My email is : {this.props.email}</h1>
         )
     }
 }
