@@ -68,7 +68,7 @@ aside {
   color: white;
   text-align: center;
   padding: 10px;
-  width: 150px;
+  width: auto;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -76,6 +76,13 @@ aside {
 }
 
 
-.button:hover {
+/* .button:hover {
   background-color : #4398a5;
+  width: 20%;
+} */
+
+.button:hover {
+  transform:scale(1.1,1.1);
+    -webkit-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
 }

@@ -18,9 +18,9 @@ class Name extends Component {
         return (
             <div>
                 <h1>{this.state.name}</h1>
-                <div class="container">
+                <div className="container">
                     <aside>
-                        <button onClick={this.clickMe} type="submit" class="button">Change text</button>
+                        <button onClick={this.clickMe} type="submit" className="button">Change text</button>
                     </aside>
                 </div>
             </div>
