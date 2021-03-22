@@ -1,6 +1,7 @@
 import './App.css';
 import Hello from './components/UserForm';
 import UserFormClass from './components/UserForms';
+import Name from './components/Name';
 
 function App() {
   function clicked() {
@@ -8,9 +9,7 @@ function App() {
   }
   return (
     <div className="App">
-      <h1>User Form</h1>
-      <Hello name="shivam" lastname="chouhan" />
-      <UserFormClass email="shivam@chouhan.com" myclick={clicked} />
+      <Name />
     </div>
   );
 }

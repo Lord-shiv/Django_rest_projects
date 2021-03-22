@@ -1,38 +1,81 @@
-.App {
+/* Tablet Landscape */
+@media screen and (max-width: 1060px) {
+  #primary { width:67%; }
+  #secondary { width:30%; margin-left:3%;}  
+}
+
+/* Tabled Portrait */
+@media screen and (max-width: 768px) {
+  #primary { width:100%; }
+  #secondary { width:100%; margin:0; border:none; }
+}
+
+html { font-size:100%; } 
+
+
+@media (min-width: 640px) { body {font-size:1rem;} } 
+@media (min-width:960px) { body {font-size:1.2rem;} } 
+@media (min-width:1100px) { body {font-size:1.5rem;} } 
+
+h1 {
+  color: #9799a7;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.container:before, .container:after {
+  content: "";
+  display: table;
+}
+.container:after {
+  clear: both;
+}
+.container {
+  background: #eaeaed;
+  margin-bottom: 24px;
+  *zoom: 1;
+}
+.container-75 {
+  width: 75%;
+}
+.container-50 {
+  margin-bottom: 0;
+  width: 50%;
+}
+.container, section, aside {
+  border-radius: 6px;
+}
+section, aside {
+  /* background: #2db34a; */
+  color: #fff;
+  margin: 1.858736059%;
+  padding: 20px 0;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+section {
+  float: left;
+  width: 63.197026%;
+}
+aside {
+  float: right;
+  width: 29.3680297%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.button {
+  border-radius: 4px;
+  background-color: #4dbecf;
+  border: 2px solid gainsboro;
   color: white;
+  text-align: center;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button:hover {
+  background-color : #4398a5;
 }
