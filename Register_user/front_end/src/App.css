@@ -64,25 +64,46 @@ aside {
 .button {
   border-radius: 4px;
   background-color: #4dbecf;
-  border: 2px solid gainsboro;
+  border: 1px solid gainsboro;
   color: white;
   text-align: center;
   padding: 10px;
-  width: auto;
+  width: 50%;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
   outline: none;
+  box-shadow: #bdbaba 0 0 10px 0;
 }
 
 
-/* .button:hover {
-  background-color : #4398a5;
-  width: 20%;
-} */
-
 .button:hover {
+  background-color : #4398a5;
+  width: 45%;
+}
+
+/* .button:hover {
   transform:scale(1.1,1.1);
     -webkit-transform:scale(1.1,1.1);
     -moz-transform:scale(1.1,1.1);
+} */
+
+.input {
+  width: 90%;
+  padding: 10px;
+  outline: none;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+  color: gray;
+  margin: 8px;
+  padding-right: 10%;
+  box-shadow: #bdbaba 0 0 10px 0;
+}
+
+.input-icons > .fa-lock {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  font-size: 15px;
+  color: red;
 }

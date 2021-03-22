@@ -4,6 +4,7 @@ import UserFormClass from './components/UserForms';
 import Name from './components/Name';
 import Example from './components/Example';
 import Example2 from './components/Example2';
+import Form from './components/Form';
 
 function App() {
   function clicked() {
@@ -14,6 +15,7 @@ function App() {
       <Name />
       <Example names={['python', 'Java', 'javascript',]} />
       <Example2 names={['Rython', 'Bawa', 'Bawascript', 'django',]} />
+      <Form />
     </div>
   );
 }
