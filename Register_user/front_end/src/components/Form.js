@@ -40,9 +40,9 @@ class Form extends Component {
                     <input className="input" value={this.state.password} type="password" placeholder="password" onChange={this.passwordHandler} ></input>
                     <button type="submit" className="button">Sign in </button>
                 </div>
-                {posts.map(post =>
+                {/* {posts.map(post =>
                     <h2 key={post.id}>{post.title}</h2>
-                )}
+                )} */}
             </div>
         )
     }

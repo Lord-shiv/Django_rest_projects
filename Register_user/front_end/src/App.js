@@ -5,6 +5,8 @@ import Name from './components/Name';
 import Example from './components/Example';
 import Example2 from './components/Example2';
 import Form from './components/Form';
+import MyFragment from './components/Fragments';
+import { Fragment } from 'react';
 
 function App() {
   function clicked() {
@@ -12,10 +14,11 @@ function App() {
   }
   return (
     <div className="App">
-      <Name />
+      {/* <Name />
       <Example names={['python', 'Java', 'javascript',]} />
-      <Example2 names={['Rython', 'Bawa', 'Bawascript', 'django',]} />
+      <Example2 names={['Rython', 'Bawa', 'Bawascript', 'django',]} /> */}
       <Form />
+      <MyFragment />
     </div>
   );
 }
