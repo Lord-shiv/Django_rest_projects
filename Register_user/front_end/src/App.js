@@ -17,7 +17,7 @@ function App() {
       {/* <Name />
       <Example names={['python', 'Java', 'javascript',]} />
       <Example2 names={['Rython', 'Bawa', 'Bawascript', 'django',]} /> */}
-      <Form />
+      {/* <Form /> */}
       <MyFragment />
     </div>
   );

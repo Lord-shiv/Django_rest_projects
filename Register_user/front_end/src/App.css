@@ -30,6 +30,7 @@ html { font-size:100%; }
   transform: translate(-50%, -50%) }
 
 .button {
+  float: right;
   border-radius: 4px;
   background-color: #4dbecf;
   border: 1px solid gainsboro;
@@ -68,12 +69,15 @@ html { font-size:100%; }
 }
 
 .input:hover {
-  /* border: 2px solid #71d3e2;
-  padding: 10.5px; */
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+input:focus{
+  border: 2px solid #71d3e2;
+}
+
 /* @media screen and (min-width: 800px){
   .input {
     width: 90%;
