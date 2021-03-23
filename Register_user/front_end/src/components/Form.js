@@ -6,9 +6,18 @@ class Form extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            posts: []
         }
     }
+
+    componentDidMount() {
+        // this.setState({ username: 'shivam' })
+        fetch('http://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(data => this.setState({ posts: data }))
+    }
+
     usernameHandler = (event) => {
         this.setState({
             username: event.target.value
@@ -21,18 +30,19 @@ class Form extends Component {
         })
     }
     render() {
+        const { posts } = this.state
+
         return (
             <div>
-                <h2>Sign Up Form</h2>
-                <div className="container">
-                    <section>
-                        <input className="input" value={this.state.username} type="text" placeholder="enter your username" onChange={this.usernameHandler} ></input>
-                        <input className="input" value={this.state.password} type="password" placeholder="enter your password" onChange={this.passwordHandler} ></input>
-                    </section>
-                    <aside>
-                        <button type="submit" class="button">Sign in </button>
-                    </aside>
+                <div className="section card shadow1">
+                    <h3>Welcome back!</h3>
+                    <input className="input" value={this.state.username} type="text" placeholder="username" onChange={this.usernameHandler} ></input>
+                    <input className="input" value={this.state.password} type="password" placeholder="password" onChange={this.passwordHandler} ></input>
+                    <button type="submit" className="button">Sign in </button>
                 </div>
+                {posts.map(post =>
+                    <h2 key={post.id}>{post.title}</h2>
+                )}
             </div>
         )
     }
