@@ -1,3 +1,7 @@
+.App{
+  text-align:center;
+}
+
 /* Tablet Landscape */
 @media screen and (max-width: 1060px) {
   #primary { width:67%; }
@@ -10,7 +14,7 @@
   #secondary { width:100%; margin:0; border:none; }
 }
 
-html { font-size:100%; } 
+html { font-size:100%; }
 
 
 @media (min-width: 640px) { body {font-size:1rem;} } 

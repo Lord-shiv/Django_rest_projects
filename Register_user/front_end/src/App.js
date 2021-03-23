@@ -1,24 +1,25 @@
 import './App.css';
-import Hello from './components/UserForm';
-import UserFormClass from './components/UserForms';
-import Name from './components/Name';
-import Example from './components/Example';
-import Example2 from './components/Example2';
-import Form from './components/Form';
-import MyFragment from './components/Fragments';
-import { Fragment } from 'react';
+import { useState, useEffect } from 'react';
+import UserList from './components/UserList';
 
 function App() {
-  function clicked() {
-    alert("class button clicked.");
-  }
+
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/home/', {
+      'method': 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(resp => resp.json())
+      .then(resp => setUsers(resp))
+      .catch(error => console.log(error))
+  }, [])
   return (
     <div className="App">
-      {/* <Name />
-      <Example names={['python', 'Java', 'javascript',]} />
-      <Example2 names={['Rython', 'Bawa', 'Bawascript', 'django',]} /> */}
-      {/* <Form /> */}
-      <MyFragment />
+      <h3>User List</h3>
+      <UserList users={users} />
     </div>
   );
 }
