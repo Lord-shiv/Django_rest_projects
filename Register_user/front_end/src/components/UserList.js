@@ -1,5 +1,4 @@
 import React from 'react'
-import MaterialTable from 'material-table';
 
 function UserList(props) {
     return (
@@ -7,10 +6,6 @@ function UserList(props) {
             {props.users && props.users.map((user, index) => {
                 return (
                     <div key={'user.id' + index}>
-                        <MaterialTable title="User List"
-                            data={user.first_name}
-                            coulms={user}
-                        />
                         <h3>{user.first_name}</h3>
                         <p>{user.last_name}</p>
                     </div>
