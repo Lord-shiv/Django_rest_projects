@@ -2,8 +2,33 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import UserList from './components/UserList';
 import SideMenu from './components/SideMenu';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Header from './components/Header';
+import PageHeader from './components/PageHeader';
+import SchoolIcon from '@material-ui/icons/School';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#fe2712',
+      light: '#3c44b126'
+    },
+    secondary: {
+      main: '#009900',
+      light: '#f8324526'
+    },
+    background: {
+      default: '#f8f8ff'
+    },
+  },
+  overrides: {
+    MuiAppBar: {
+      root: {
+        transform: 'translateZ(0)'
+      }
+    }
+  }
+})
 
 const useStyles = makeStyles({
   appMain: {
@@ -27,14 +52,23 @@ function App() {
       .catch(error => console.log(error))
   }, [])
   return (
-    <div className="App">
-      <SideMenu />
-      <div className={classes.appMain}>
-        <Header />
+    <ThemeProvider theme={theme}>
+
+      <div className="App">
+        <SideMenu />
+        <div className={classes.appMain}>
+          <Header />
+          <PageHeader
+            title="OHO AHA OOO"
+            subTitle="i am subtitle"
+            icon={<SchoolIcon fontSize="large" />}
+          />
+        </div>
+        <CssBaseline />
+        <h3>User List</h3>
+        <UserList users={users} />
       </div>
-      <h3>User List</h3>
-      <UserList users={users} />
-    </div>
+    </ThemeProvider>
   );
 }
 

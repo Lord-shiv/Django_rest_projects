@@ -10,7 +10,8 @@ const style = ({
         left: '0',
         width: '320px',
         height: '100%',
-        backgroundColor: '#253054'
+        backgroundColor: '#20b2aa'
+        // #0fc0fc
     }
 })
 
