@@ -1,12 +1,14 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 // import SideMenu from './components/SideMenu';
-import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { makeStyles, CssBaseline, createMuiTheme, ThemeProvider, Badge, IconButton } from '@material-ui/core';
 import Header from './components/Header';
-import PageHeader from './components/PageHeader';
+// import PageHeader from './components/PageHeader';
 // import SchoolIcon from '@material-ui/icons/School';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
 
-import { Link } from 'react-router-dom';
 
 
 const theme = createMuiTheme({
@@ -48,6 +50,7 @@ class App extends React.Component {
         this.setState({
           data: data
         });
+        console.log(data);
       });
   }
 
@@ -56,7 +59,7 @@ class App extends React.Component {
   }
 
   deleteData(id) {
-    fetch('http://127.0.0.1:8000/employee/' + id + '/', {
+    fetch('http://127.0.0.1:8000/users/' + id + '/', {
       method: 'DELETE',
       body: JSON.stringify(this.state),
     })
@@ -71,17 +74,30 @@ class App extends React.Component {
   render() {
     const { classes } = this.props;
     const empData = this.state.data;
-    const rows = empData.map((emp) =>
-      <tr key={emp.id}>
+    const rows = empData.map((emp, index) =>
+      <tr key={'mykey' + index}>
+        <td>{emp.id}</td>
+        <td><img className="Uimg" src={`http://127.0.0.1:8000${emp.profile_pic}`}></img></td>
         <td>{emp.first_name} {emp.last_name}</td>
         <td>{emp.email}</td>
+        <td>{emp.gender}</td>
+        <td>{emp.status}</td>
         <td>{emp.phone}</td>
         <td>{emp.salary}</td>
-        <td>
-          <Link to={'update/' + emp.id} className="btn btn-info mr-2">Update</Link>
-          <button onClick={() => this.deleteData(emp.id)} className="btn btn-danger">Delete</button>
+        <td className="Inlinerow">
+          <IconButton>
+            <Badge color="secondary">
+              <BorderColorIcon fontSize="small" />
+            </Badge>
+          </IconButton>
+          <IconButton>
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+
+          {/* <Link to={'update/' + emp.id} className="btn btn-info mr-2">Update</Link> */}
+          {/* <button onClick={() => this.deleteData(emp.id)} className="btn btn-danger">Delete</button> */}
         </td>
-      </tr>
+      </tr >
     );
     return (
       <ThemeProvider theme={theme}>
@@ -89,20 +105,24 @@ class App extends React.Component {
           {/* <SideMenu /> */}
           <div className="table">
             <Header />
-            <PageHeader
+            {/* <PageHeader
               title="Users Table"
-            // subTitle="i am a subtitle"
-            // icon={<SchoolIcon fontSize="large" />}
-            />
+            subTitle="i am a subtitle"
+            icon={<SchoolIcon fontSize="large" />}
+            /> */}
           </div>
           <CssBaseline />
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th>Full Name</th>
+                <th>Id</th>
+                <th>Image</th>
+                <th>User</th>
                 <th>Email</th>
+                <th>Gender</th>
+                <th>Profile</th>
                 <th>Contact</th>
-                <th>Address</th>
+                <th>Salary</th>
                 <th>Action</th>
               </tr>
             </thead>
