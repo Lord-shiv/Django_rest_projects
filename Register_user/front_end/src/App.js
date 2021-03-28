@@ -58,6 +58,10 @@ class App extends React.Component {
     this.fetchData();
   }
 
+  editBtn(article) {
+    this.editBtn(article)
+  }
+
   deleteData(id) {
     fetch('http://127.0.0.1:8000/users/' + id + '/', {
       method: 'DELETE',
@@ -77,7 +81,7 @@ class App extends React.Component {
     const rows = empData.map((emp, index) =>
       <tr key={'mykey' + index}>
         <td>{emp.id}</td>
-        <td><img className="Uimg" src={`http://127.0.0.1:8000${emp.profile_pic}`}></img></td>
+        <td><img className="Uimg" src={`http://127.0.0.1:8000${emp.profile_pic}`} alt="img"></img></td>
         <td>{emp.first_name} {emp.last_name}</td>
         <td>{emp.email}</td>
         <td>{emp.gender}</td>
@@ -86,9 +90,7 @@ class App extends React.Component {
         <td>{emp.salary}</td>
         <td className="Inlinerow">
           <IconButton>
-            <Badge color="secondary">
-              <BorderColorIcon fontSize="small" />
-            </Badge>
+            <BorderColorIcon fontSize="small" onClick={() => this.editBtn(empData)} />
           </IconButton>
           <IconButton>
             <DeleteIcon fontSize="small" />

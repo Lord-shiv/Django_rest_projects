@@ -36,8 +36,9 @@ class Form extends Component {
             <div>
                 <div className="section card shadow1">
                     <h3>Welcome back!</h3>
-                    <input className="input" value={this.state.username} type="text" placeholder="username" onChange={this.usernameHandler} ></input>
-                    <input className="input" value={this.state.password} type="password" placeholder="password" onChange={this.passwordHandler} ></input>
+                    <br></br>
+                    <input className="inputL" value={this.state.username} type="text" placeholder="username" onChange={this.usernameHandler} ></input>
+                    <input className="inputL" value={this.state.password} type="password" placeholder="password" onChange={this.passwordHandler} ></input>
                     <button type="submit" className="button">Sign in </button>
                 </div>
                 {/* {posts.map(post =>

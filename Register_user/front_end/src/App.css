@@ -22,6 +22,11 @@ html { font-size:100%; }
 @media (min-width:960px) { body {font-size:1.2rem;} } 
 @media (min-width:1100px) { body {font-size:1.5rem;} } 
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .section {
   background: black;
@@ -31,66 +36,74 @@ html { font-size:100%; }
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-right: -50%;
   transform: translate(-50%, -50%) }
 
 .button {
-  float: right;
-  border-radius: 4px;
   background-color: #4dbecf;
-  border: 1px solid gainsboro;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 8px;
   width: auto;
   cursor: pointer;
+  border: none;
+  /* border-color: #4dbecf;
+  border-radius: 5px; */
   margin: 8px;
-  outline: none;
-  box-shadow: #bdbaba 0 0 2px 1px; 
+  box-shadow: #bdbaba 0 0 5px 0;
+  /* outline: none !important; */
+}
+.button:hover{
+  background-color: #3eaabb;
 }
 
-
-.button:hover
-{
-        -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);
-}
 
 .input {
-  width: auto;
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px;
+  margin: 10px;
   outline: none;
   font-size: 14px;
-  border: 2px solid gainsboro;
+  border: 1px solid hsl(0, 2%, 74%);
   border-radius: 5px;
   color: gray;
-  margin: 9px;
   box-shadow: #bdbaba 0 0 5px 0;
 }
-
-.input:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
+.inputL {
+  width: auto;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  outline: none;
+  font-size: 14px;
+  border: 1px solid hsl(0, 2%, 74%);
+  border-radius: 5px;
+  color: gray;
+  box-shadow: #bdbaba 0 0 5px 0;
 }
 
 input:focus{
   border: 2px solid #71d3e2;
 }
 
-/* @media screen and (min-width: 800px){
-  .input {
-    width: 90%;
-  }
-} */
+.inputarea{
+  padding: 10px;
+  color: gray;
+  margin-left: 21%;
+  width: 69%;
+  box-sizing: border-box;
+  outline: none !important;
+  border: 1px solid hsl(0, 2%, 74%);
+  border-radius: 10px;
+  box-shadow: #bdbaba 0 0 5px 0;
+}
 
 .card {
-  padding: 35px;
+  padding: 30px;
   background: #fff;
   max-width: auto;
+  border-radius: 15px;
   max-height: auto;
-  border-radius: 20px;
   margin: auto;
 }
 
@@ -105,7 +118,8 @@ input:focus{
 
 h3{
   margin: 8px;
-  color: slategrey;
+  font-size: 28px;
+  color: #4dbecf;
 }
 
 table {
@@ -121,11 +135,10 @@ table {
 
 table td, table th {
   border: 1px solid rgb(255, 255, 255);
-  padding: 0px;
 }
 table tr:nth-child(even){background-color: #1fc2b236;}
 
-table tr:hover {background-color: #98ff98}
+/* table tr:hover {background-color: #98ff98} */
 
 table th {
   padding-top: 9px;
@@ -147,11 +160,247 @@ table td:hover{
 }
 
 .Uimg{
+  display: table-cell;
   width: 40px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 50%;
 }
 
 .Inlinerow{
   display: table-cell;
 }
+
+/* RegisterForm */
+
+label{
+  font-size: 14px;
+  color:rgba(28, 28, 29, 0.74);
+  font-weight: 500;
+  padding: 10px;
+}
+
+
+.RegiForm{
+  width: 50%;
+  margin: 2% auto;
+}
+
+
+.image_me{
+  width: 40%;
+  margin-left: 30%;
+  padding:1px 20px;
+  background: #f3f2f2;
+  border:1px solid rgb(131, 131, 131);
+  position:relative;
+  color:rgb(105, 105, 105);
+  border-radius:4px;
+  text-align:center;
+  float:left; 
+  cursor:pointer;
+  font-size: 13px;
+  margin-bottom: 15px;
+  font-weight: 500; 
+}
+
+.inputDocs{
+  position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 14px;
+    width: 100%;
+}
+
+.gender{
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(95, 95, 95);
+}
+
+/* User_Register */
+.wrapper{
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  margin: 50px auto;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.548), 0 15px 40px rgba(166, 173, 201, 0.555);  
+  padding: 30px;
+}
+
+.wrapper .title{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #20b2aa;
+  text-transform: uppercase;
+  text-align: center;
+}
+.wrapper .titlet{
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #20b2aa;
+  text-align: left;
+}
+
+.wrapper .form{
+  width: 100%;
+}
+
+.wrapper .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper .form .inputfield label{
+   width: 200px;
+   color: #757575;
+   margin-right: 10px;
+  font-size: 14px;
+}
+
+.wrapper .form .inputfield .input,
+.wrapper .form .inputfield .textarea{
+  width: 100%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  box-shadow: #bdbaba 0 0 5px 0;
+}
+
+.wrapper .form .inputfield .textarea{
+  width: 100%;
+  height: 125px;
+  resize: none;
+}
+
+.wrapper .form .inputfield .custom_select{
+  position: relative;
+  box-shadow: #bdbaba 0 0 5px 0;
+  outline: none !important;
+  color: rgb(85, 82, 82);
+  border: 1px solid hsl(0, 2%, 74%);
+  width: 100%;
+  padding-left: 3px;
+  height: 37px;
+}
+
+.wrapper .form .inputfield .custom_select:before{
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  border: 8px solid;
+  border-color: #d5dbd9 transparent transparent transparent;
+  pointer-events: none;
+}
+
+.wrapper .form .inputfield .custom_select select{
+  -webkit-appearance: none;
+  -moz-appearance:   none;
+  appearance:        none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #d5dbd9;
+  border-radius: 3px;
+}
+
+
+.wrapper .form .inputfield .input:focus,
+.wrapper .form .inputfield .textarea:focus,
+.wrapper .form .inputfield .custom_select select:focus{
+  border: 1px solid #71d3e2;
+}
+
+.wrapper .form .inputfield p{
+   font-size: 14px;
+   color: #757575;
+}
+.wrapper .form .inputfield .check{
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.wrapper .form .inputfield .check input[type="checkbox"]{
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.wrapper .form .inputfield .check .checkmark{
+  width: 15px;
+  height: 15px;
+  border: 1px solid #71d3e2;
+  display: block;
+  position: relative;
+}
+.wrapper .form .inputfield .check .checkmark:before{
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 5px;
+  height: 2px;
+  border: 2px solid;
+  border-color: transparent transparent #fff #fff;
+  transform: rotate(-45deg);
+  display: none;
+}
+.wrapper .form .inputfield .check input[type="checkbox"]:checked ~ .checkmark{
+  background: #71d3e2;
+}
+
+.wrapper .form .inputfield .check input[type="checkbox"]:checked ~ .checkmark:before{
+  display: block;
+}
+
+.wrapper .form .inputfield .btn{
+  width: 100%;
+   padding: 8px 10px;
+  font-size: 15px; 
+  border: 0px;
+  background:  #71d3e2;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+}
+
+.wrapper .form .inputfield .btn:hover{
+  background: #55adbb;
+}
+
+.wrapper .form .inputfield:last-child{
+  margin-bottom: 0;
+}
+
+@media (max-width:420px) {
+  .wrapper .form .inputfield{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper .form .inputfield label{
+    margin-bottom: 5px;
+  }
+  .wrapper .form .inputfield.terms{
+    flex-direction: row;
+  }
+}
+
+
+/* LOGIN */
+
