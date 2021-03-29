@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter } from "react-router-dom";
 import Form from './components/Form';
-import RegisterForm from './components/RegisterForm'
 import RegisterUser from './components/RegisterUser';
 
 function Router() {
@@ -13,7 +12,6 @@ function Router() {
     <BrowserRouter>
       <Route exact path='/' component={App} />
       <Route exact path='/login' component={Form} />
-      <Route exact path='/registerF/' component={RegisterForm} />
       <Route exact path='/registerU/' component={RegisterUser} />
 
     </BrowserRouter>

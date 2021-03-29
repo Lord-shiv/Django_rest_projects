@@ -42,12 +42,12 @@ html { font-size:100%; }
   background-color: #4dbecf;
   color: white;
   text-align: center;
-  padding: 8px;
+  padding: 10px;
   width: auto;
   cursor: pointer;
   border: none;
-  /* border-color: #4dbecf;
-  border-radius: 5px; */
+  /* border-color: #4dbecf; */
+  border-radius: 6px;
   margin: 8px;
   box-shadow: #bdbaba 0 0 5px 0;
   /* outline: none !important; */
@@ -160,10 +160,12 @@ table td:hover{
 }
 
 .Uimg{
-  display: table-cell;
+  vertical-align:middle;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 0 0 5px 0px gray;
 }
 
 .Inlinerow{
