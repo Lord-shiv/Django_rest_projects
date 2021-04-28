@@ -58,3 +58,100 @@ class GetSinglePuppyTest(TestCase):
         response = client.get(
             reverse('app_puppies:get_delete_update_puppy', kwargs={'pk': 30}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class CreateNewPuppyTest(TestCase):
+    ''' Test module for inserting a new puppy '''
+
+    def setUp(self):
+        self.valid_payload = {
+            'name': 'Muffin',
+            'age': 4,
+            'breed': 'Pamerion',
+            'color': 'White'
+        }
+        self.invalid_payload = {
+            'name': '',
+            'age': 4,
+            'breed': 'Pamerion',
+            'color': 'White'
+        }
+
+        def test_create_valid_puppy(self):
+            response = client.post(
+                reverse('app_puppies:get_post_puppies'),
+                data=json.dumps(self.valid_payload),
+                content_type='application/json'
+            )
+            self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        def test_create_invalid_puppy(self):
+            response = client.post(
+                reverse('app_puppies:get_post_puppies'),
+                data=json.dumps(self.invalid_payload),
+                content_type='application/json'
+            )
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class UpdateSinglePuppyTest(TestCase):
+    """ Test module for updating an existing puppy record """
+
+    def setUp(self):
+        self.casper = Puppy.objects.create(
+            name='Casper', age=3, breed='Bull Dog', color='Black')
+        self.muffin = Puppy.objects.create(
+            name='Muffy', age=1, breed='Gradane', color='Brown')
+
+        self.valid_payload = {
+            'name': 'Muffy',
+            'age': 2,
+            'breed': 'Labrador',
+            'color': 'Black'
+        }
+        self.invalid_payload = {
+            'name': '',
+            'age': 4,
+            'breed': 'Pamerion',
+            'color': 'White'
+        }
+
+        def test_valid_update_puppy(self):
+            response = client.put(
+                reverse('app_puppies:get_delete_update_puppy',
+                        kwargs={'pk': self.muffin.pk}),
+                data=json.dumps(self.valid_payload),
+                content_type='application/json'
+            )
+            self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        def test_invalid_update_puppy(self):
+            response = client.put(
+                reverse('app_puppies:get_delete_update_puppy',
+                        kwargs={'pk': self.muffin.pk}),
+                data=json.dumps(self.invalid_payload),
+                content_type='application/json'
+            )
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+
+class DeleteSinglePuppyTest(TestCase):
+    ''' Test module for deleting an existing puppy record '''
+
+    def setUp(self):
+        self.casper = Puppy.objects.create(
+            name='Casper', age=3, breed='Bull Dog', color='Black'
+        )
+        self.muffin = Puppy.objects.create(
+            name='Muffy', age=1, breed='Gradane', color='Brown'
+        )
+
+    def test_valid_delete_puppy(self):
+        response = client.delete(
+            reverse('app_puppies:get_delete_update_puppy', kwargs={'pk': self.muffin.pk}))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_invalid_delete_puppy(self):
+        response = client.delete(
+            reverse('app_puppies:get_delete_update_puppy', kwargs={'pk': 30}))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
